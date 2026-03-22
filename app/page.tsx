@@ -60,13 +60,7 @@ export default function HomePage() {
 
       {/* Hero */}
       <div className="relative overflow-hidden">
-        <Image
-          src="/images/hero-bg.jpg"
-          alt=""
-          fill
-          className="object-cover"
-          priority
-        />
+      
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-background" />
 
         <div className="relative z-10 container max-w-xl mx-auto px-5 pt-16 pb-24 text-center">
