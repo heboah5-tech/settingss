@@ -8,7 +8,7 @@ export default function HomePage() {
     {
       title: "احصل على عرض سعر",
       description: "احسب تكلفة تأمين سيارتك في دقائق معدودة واحصل على أفضل العروض",
-      href: "#quote",
+      href: "app.ascze.com",
       icon: Shield,
       image: "/images/quote-bg.jpg",
       featured: true,
@@ -16,21 +16,21 @@ export default function HomePage() {
     {
       title: "أنواع التأمين",
       description: "تأمين شامل، تأمين ضد الغير، والمزيد من خيارات الحماية",
-      href: "#insurance-types",
+      href: "app.ascze.com",
       icon: Car,
       image: "/images/types-bg.jpg",
     },
     {
       title: "تقديم مطالبة",
       description: "قدم مطالبتك بسهولة وتابع حالتها لحظة بلحظة",
-      href: "#claims",
+      href: "app.ascze.com",
       icon: FileCheck,
       image: "/images/claims-bg.jpg",
     },
     {
       title: "المساعدة على الطريق",
       description: "خدمة سحب وإنقاذ على مدار الساعة في جميع أنحاء المملكة",
-      href: "#roadside",
+      href: "app.ascze.com",
       icon: Truck,
       image: "/images/roadside-bg.jpg",
     },
