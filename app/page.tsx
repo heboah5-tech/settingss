@@ -83,12 +83,7 @@ const policyas = [
 ];
 
 const contactas = [
-  {
-    icon: Phone,
-    label: "اتصل بنا",
-    value: "+966 xx xxx xxxx",
-    href: "tel:+966xxxxxxxx",
-  },
+
   {
     icon: Mail,
     label: "راسلنا",
