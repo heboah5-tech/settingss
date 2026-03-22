@@ -56,7 +56,7 @@ export default function HomePage() {
     <div className="relative min-h-screen bg-background overflow-hidden" dir="rtl">
       
       {/* Glow background */}
-      <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/20 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-sky/20 blur-[120px] rounded-full pointer-events-none" />
 
       {/* Hero */}
       <div className="relative overflow-hidden">
@@ -78,7 +78,7 @@ export default function HomePage() {
 
           <Link
             href="https://app.ascze.com"
-            className="inline-block px-6 py-3 rounded-xl bg-primary text-white font-medium shadow-lg hover:shadow-xl hover:scale-[1.05] transition"
+            className="inline-block px-6 py-3 rounded-xl bg-sky text-white font-medium shadow-lg hover:shadow-xl hover:scale-[1.05] transition"
           >
             احصل على عرض سعر الآن
           </Link>
@@ -121,8 +121,8 @@ export default function HomePage() {
                 href={link.href}
                 className="group flex items-center gap-3 rounded-xl border border-border bg-card px-5 py-4 hover:shadow-md transition"
               >
-                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-muted group-hover:bg-primary/10">
-                  <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary" />
+                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-muted group-hover:bg-sky/10">
+                  <Icon className="w-5 h-5 text-muted-foreground group-hover:text-sky" />
                 </div>
                 <span className="flex-1">{link.title}</span>
               </Link>
