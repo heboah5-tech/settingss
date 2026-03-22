@@ -1,4 +1,3 @@
-import { Link } from "wouter";
 import {
   Shield,
   FileText,
@@ -11,7 +10,7 @@ import {
   Star,
 } from "lucide-react";
 
-const insuranceLinks = [
+const insuranceas = [
   {
     icon: Car,
     title: "تأمين السيارات الشامل",
@@ -44,7 +43,7 @@ const insuranceLinks = [
   },
 ];
 
-const policyLinks = [
+const policyas = [
   {
     icon: Shield,
     title: "سياسة الخصوصية",
@@ -83,7 +82,7 @@ const policyLinks = [
   },
 ];
 
-const contactLinks = [
+const contactas = [
   {
     icon: Phone,
     label: "اتصل بنا",
@@ -98,34 +97,34 @@ const contactLinks = [
   },
 ];
 
-function LinkCard({
-  link,
+function aCard({
+  a,
 }: {
-  link: (typeof policyLinks)[0] & { badge?: string | null; badgeColor?: string };
+  a: (typeof policyas)[0] & { badge?: string | null; badgeColor?: string };
 }) {
-  const Icon = link.icon;
+  const Icon = a.icon;
   return (
     <div className="flex items-center gap-4 p-4 bg-card border border-border rounded-xl shadow-sm hover:shadow-md transition-all duration-200 hover:border-primary/30 group cursor-pointer">
-      <div className={`flex-shrink-0 w-11 h-11 rounded-xl ${link.bgLight} flex items-center justify-center`}>
-        <Icon className={`w-5 h-5 ${link.textColor}`} />
+      <div className={`flex-shrink-0 w-11 h-11 rounded-xl ${a.bgLight} flex items-center justify-center`}>
+        <Icon className={`w-5 h-5 ${a.textColor}`} />
       </div>
       <div className="flex-1 text-right">
         <div className="flex items-center justify-end gap-2 mb-0.5">
-          {"badge" in link && link.badge && (
-            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${link.badgeColor}`}>
-              {link.badge}
+          {"badge" in a && a.badge && (
+            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${a.badgeColor}`}>
+              {a.badge}
             </span>
           )}
-          <p className="font-semibold text-foreground text-sm">{link.title}</p>
+          <p className="font-semibold text-foreground text-sm">{a.title}</p>
         </div>
-        <p className="text-muted-foreground text-xs">{link.description}</p>
+        <p className="text-muted-foreground text-xs">{a.description}</p>
       </div>
       <ChevronLeft className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
     </div>
   );
 }
 
-export default function BioLinksHome() {
+export default function BioasHome() {
   return (
     <div className="min-h-screen bg-background" dir="rtl">
       <div className="max-w-md mx-auto px-6 py-10">
@@ -147,7 +146,7 @@ export default function BioLinksHome() {
           </div>
         </div>
 
-        {/* Insurance Links Section */}
+        {/* Insurance as Section */}
         <div className="flex items-center gap-3 mb-4">
           <div className="flex-1 h-px bg-border"></div>
           <span className="text-xs font-semibold text-foreground bg-background px-2">أنواع التأمين</span>
@@ -155,14 +154,14 @@ export default function BioLinksHome() {
         </div>
 
         <div className="space-y-3 mb-8">
-          {insuranceLinks.map((link) => (
-            <a key={link.title} href={link.href} target="_blank" rel="noopener noreferrer">
-              <LinkCard link={link} />
+          {insuranceas.map((a) => (
+            <a key={a.title} href={a.href} target="_blank" rel="noopener noreferrer">
+              <aCard a={a} />
             </a>
           ))}
         </div>
 
-        {/* Policy Links Section */}
+        {/* Policy as Section */}
         <div className="flex items-center gap-3 mb-4">
           <div className="flex-1 h-px bg-border"></div>
           <span className="text-xs font-semibold text-foreground bg-background px-2">السياسات والوثائق</span>
@@ -170,13 +169,13 @@ export default function BioLinksHome() {
         </div>
 
         <div className="space-y-3 mb-8">
-          {policyLinks.map((link) => {
-            const card = <LinkCard key={link.title} link={link} />;
-            if (link.internal) {
-              return <Link key={link.title} href={link.href}>{card}</Link>;
+          {policyas.map((a) => {
+            const card = <aCard key={a.title} a={a} />;
+            if (a.internal) {
+              return <a key={a.title} href={a.href}>{card}</a>;
             }
             return (
-              <a key={link.title} href={link.href} target="_blank" rel="noopener noreferrer">
+              <a key={a.title} href={a.href} target="_blank" rel="noopener noreferrer">
                 {card}
               </a>
             );
@@ -190,9 +189,9 @@ export default function BioLinksHome() {
           <div className="flex-1 h-px bg-border"></div>
         </div>
 
-        {/* Contact Links */}
+        {/* Contact as */}
         <div className="grid grid-cols-2 gap-3 mb-8">
-          {contactLinks.map((item) => {
+          {contactas.map((item) => {
             const Icon = item.icon;
             return (
               <a
@@ -218,17 +217,17 @@ export default function BioLinksHome() {
             © {new Date().getFullYear()} مقارنة التأمين — جميع الحقوق محفوظة
           </p>
           <div className="flex items-center justify-center gap-4 mt-3">
-            <Link href="/privacy-policy" className="text-xs text-primary hover:underline">
+            <a href="/privacy-policy" className="text-xs text-primary hover:underline">
               سياسة الخصوصية
-            </Link>
+            </a>
             <span className="text-muted-foreground">|</span>
-            <Link href="/cookies-policy" className="text-xs text-primary hover:underline">
+            <a href="/cookies-policy" className="text-xs text-primary hover:underline">
               الكوكيز
-            </Link>
+            </a>
             <span className="text-muted-foreground">|</span>
-            <Link href="/terms-conditions" className="text-xs text-primary hover:underline">
+            <a href="/terms-conditions" className="text-xs text-primary hover:underline">
               الشروط والأحكام
-            </Link>
+            </a>
           </div>
         </div>
       </div>
