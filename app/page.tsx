@@ -11,6 +11,7 @@ import {
   Star,
   type LucideIcon,
 } from "lucide-react";
+import "./globals.css";
 
 /* ================= TYPES ================= */
 
