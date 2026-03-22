@@ -13,7 +13,7 @@ export default function HomePage() {
       description: "احسب تكلفة تأمين سيارتك في دقائق معدودة واحصل على أفضل العروض",
       href: "https://app.ascze.com",
       icon: Shield,
-      image: "/images/quote-bg.jpg",
+      image: "https://images.unsplash.com/photo-1550355291-bbee04a92027",
       featured: true,
     },
     {
