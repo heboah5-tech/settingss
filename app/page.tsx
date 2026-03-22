@@ -80,9 +80,22 @@ const contactas = [
   },
 ];
 
-/* ================= CARD ================= */
+import { LucideIcon } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 
-function Card({ link }: { link: any }) {
+type CardLink = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  href?: string;
+  badge?: string;
+};
+
+type CardProps = {
+  link: CardLink;
+};
+
+export function Card({ link }: CardProps) {
   const Icon = link.icon;
 
   return (
@@ -114,7 +127,6 @@ function Card({ link }: { link: any }) {
     </div>
   );
 }
-
 /* ================= PAGE ================= */
 
 export default function BioasHome() {
