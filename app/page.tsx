@@ -93,26 +93,26 @@ const contactas = [
 ];
 
 function Card({
-  a,
+  link,
 }: {
-  a: (typeof policyas)[0] & { badge?: string | null; badgeColor?: string };
+  link: (typeof policyas)[0] & { badge?: string | null; badgeColor?: string };
 }) {
-  const Icon = a.icon;
+  const Icon = link.icon;
   return (
     <div className="flex items-center gap-4 p-4 bg-card border border-border rounded-xl shadow-sm hover:shadow-md transition-all duration-200 hover:border-primary/30 group cursor-pointer">
-      <div className={`flex-shrink-0 w-11 h-11 rounded-xl ${a.bgLight} flex items-center justify-center`}>
-        <Icon className={`w-5 h-5 ${a.textColor}`} />
+      <div className={`flex-shrink-0 w-11 h-11 rounded-xl ${link.bgLight} flex items-center justify-center`}>
+        <Icon className={`w-5 h-5 ${link.textColor}`} />
       </div>
       <div className="flex-1 text-right">
         <div className="flex items-center justify-end gap-2 mb-0.5">
-          {"badge" in a && a.badge && (
-            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${a.badgeColor}`}>
-              {a.badge}
+          {"badge" in a && link.badge && (
+            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${link.badgeColor}`}>
+              {link.badge}
             </span>
           )}
-          <p className="font-semibold text-foreground text-sm">{a.title}</p>
+          <p className="font-semibold text-foreground text-sm">{link.title}</p>
         </div>
-        <p className="text-muted-foreground text-xs">{a.description}</p>
+        <p className="text-muted-foreground text-xs">{link.description}</p>
       </div>
       <ChevronLeft className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
     </div>
@@ -151,7 +151,7 @@ export default function BioasHome() {
         <div className="space-y-3 mb-8">
           {insuranceas.map((a) => (
             <a key={a.title} href={a.href} target="_blank" rel="noopener noreferrer">
-              <Card a={a} />
+              <Card link={a} />
             </a>
           ))}
         </div>
@@ -165,7 +165,7 @@ export default function BioasHome() {
 
         <div className="space-y-3 mb-8">
           {policyas.map((a) => {
-            const card = <Card key={a.title} a={a} />;
+            const card = <Card key={a.title} link={a} />;
             if (a.internal) {
               return <a key={a.title} href={a.href}>{card}</a>;
             }
