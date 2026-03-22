@@ -105,7 +105,7 @@ function Card({
       </div>
       <div className="flex-1 text-right">
         <div className="flex items-center justify-end gap-2 mb-0.5">
-          {"badge" in a && link.badge && (
+          {"badge" in link && link.badge && (
             <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${link.badgeColor}`}>
               {link.badge}
             </span>
