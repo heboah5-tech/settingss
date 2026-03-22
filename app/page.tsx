@@ -97,7 +97,7 @@ const contactas = [
   },
 ];
 
-function aCard({
+function Card({
   a,
 }: {
   a: (typeof policyas)[0] & { badge?: string | null; badgeColor?: string };
