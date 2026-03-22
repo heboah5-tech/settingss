@@ -9,17 +9,35 @@ import {
   ChevronLeft,
   Car,
   Star,
+  type LucideIcon,
 } from "lucide-react";
+
+/* ================= TYPES ================= */
+
+type CardLink = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  href: string;
+  badge?: string;
+  internal?: boolean;
+};
+
+type ContactItem = {
+  icon: LucideIcon;
+  label: string;
+  value: string;
+  href: string;
+};
 
 /* ================= DATA ================= */
 
-const insuranceas = [
+const insuranceas: CardLink[] = [
   {
     icon: Car,
     title: "تأمين السيارات الشامل",
     description: "قارن أفضل عروض التأمين الشامل على المركبات",
     href: "https://app.ascze.com/",
-    color: "from-blue-500 to-blue-600",
     badge: "الأكثر طلباً",
   },
   {
@@ -27,7 +45,6 @@ const insuranceas = [
     title: "تأمين ضد الغير",
     description: "تغطية ضد الغير بأفضل الأسعار المتاحة",
     href: "https://app.ascze.com/",
-    color: "from-sky-500 to-sky-600",
     badge: "اقتصادي",
   },
   {
@@ -35,12 +52,11 @@ const insuranceas = [
     title: "مقارنة الأسعار",
     description: "قارن أسعار جميع شركات التأمين في مكان واحد",
     href: "https://app.ascze.com/",
-    color: "from-emerald-500 to-emerald-600",
     badge: "مجاناً",
   },
 ];
 
-const policyas = [
+const policyas: CardLink[] = [
   {
     icon: Shield,
     title: "سياسة الخصوصية",
@@ -67,11 +83,10 @@ const policyas = [
     title: "وثيقة التأمين",
     description: "تحميل نموذج الوثيقة الموحدة",
     href: "https://app.ascze.com/",
-    internal: false,
   },
 ];
 
-const contactas = [
+const contactas: ContactItem[] = [
   {
     icon: Mail,
     label: "راسلنا",
@@ -80,36 +95,27 @@ const contactas = [
   },
 ];
 
-import { LucideIcon } from "lucide-react";
-import { ChevronLeft } from "lucide-react";
-
-type CardLink = {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-  href?: string;
-  badge?: string;
-};
+/* ================= COMPONENTS ================= */
 
 type CardProps = {
   link: CardLink;
 };
 
-export function Card({ link }: CardProps) {
+function Card({ link }: CardProps) {
   const Icon = link.icon;
 
   return (
     <div className="group relative flex items-center gap-4 p-4 rounded-2xl border border-white/20 bg-white/70 dark:bg-white/5 backdrop-blur-xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden">
       
-      {/* gradient glow */}
+      {/* Glow */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-br from-primary/10 to-transparent" />
 
-      {/* icon */}
+      {/* Icon */}
       <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
         <Icon className="w-5 h-5 text-primary group-hover:scale-110 transition" />
       </div>
 
-      {/* text */}
+      {/* Text */}
       <div className="flex-1 text-right">
         <div className="flex items-center justify-end gap-2 mb-1">
           {link.badge && (
@@ -122,11 +128,22 @@ export function Card({ link }: CardProps) {
         <p className="text-xs text-muted-foreground">{link.description}</p>
       </div>
 
-      {/* arrow */}
+      {/* Arrow */}
       <ChevronLeft className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:-translate-x-1 transition" />
     </div>
   );
 }
+
+function SectionTitle({ title }: { title: string }) {
+  return (
+    <div className="flex items-center gap-3 mb-4">
+      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      <span className="text-xs font-semibold px-2">{title}</span>
+      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+    </div>
+  );
+}
+
 /* ================= PAGE ================= */
 
 export default function BioasHome() {
@@ -135,9 +152,9 @@ export default function BioasHome() {
 
       <div className="max-w-md mx-auto px-5 py-10">
 
-        {/* 🔥 HERO */}
+        {/* HERO */}
         <div className="text-center mb-10">
-          <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary/80 shadow-lg mb-5">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary/80 shadow-lg mb-5">
             <Star className="w-10 h-10 text-white fill-white" />
           </div>
 
@@ -157,31 +174,33 @@ export default function BioasHome() {
           </div>
         </div>
 
-        {/* 🔹 INSURANCE */}
+        {/* INSURANCE */}
         <SectionTitle title="أنواع التأمين" />
-
         <div className="space-y-3 mb-10">
           {insuranceas.map((a) => (
-            <a key={a.title} href={a.href} target="_blank">
+            <a key={a.title} href={a.href} target="_blank" rel="noopener noreferrer">
               <Card link={a} />
             </a>
           ))}
         </div>
 
-        {/* 🔹 POLICIES */}
+        {/* POLICIES */}
         <SectionTitle title="السياسات والوثائق" />
-
         <div className="space-y-3 mb-10">
           {policyas.map((a) => (
-            <a key={a.title} href={a.href}>
+            <a
+              key={a.title}
+              href={a.href}
+              target={a.internal ? "_self" : "_blank"}
+              rel="noopener noreferrer"
+            >
               <Card link={a} />
             </a>
           ))}
         </div>
 
-        {/* 🔹 CONTACT */}
+        {/* CONTACT */}
         <SectionTitle title="تواصل معنا" />
-
         <div className="grid grid-cols-2 gap-3 mb-10">
           {contactas.map((item) => {
             const Icon = item.icon;
@@ -202,7 +221,7 @@ export default function BioasHome() {
           })}
         </div>
 
-        {/* 🔻 FOOTER */}
+        {/* FOOTER */}
         <div className="text-center space-y-2 opacity-80">
           <p className="text-xs">
             © {new Date().getFullYear()} مقارنة التأمين
@@ -224,18 +243,6 @@ export default function BioasHome() {
         </div>
 
       </div>
-    </div>
-  );
-}
-
-/* ================= SECTION TITLE ================= */
-
-function SectionTitle({ title }: { title: string }) {
-  return (
-    <div className="flex items-center gap-3 mb-4">
-      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-      <span className="text-xs font-semibold px-2">{title}</span>
-      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
     </div>
   );
 }
