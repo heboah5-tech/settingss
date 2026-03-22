@@ -1,6 +1,9 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { Shield, Car, Phone, FileCheck, Truck, FileText, Lock, Cookie } from "lucide-react"
+import { motion } from "framer-motion"
 import { LinkCard } from "@/components/link-card"
 
 export default function HomePage() {
@@ -8,7 +11,7 @@ export default function HomePage() {
     {
       title: "احصل على عرض سعر",
       description: "احسب تكلفة تأمين سيارتك في دقائق معدودة واحصل على أفضل العروض",
-      href: "app.ascze.com",
+      href: "https://app.ascze.com",
       icon: Shield,
       image: "/images/quote-bg.jpg",
       featured: true,
@@ -16,21 +19,21 @@ export default function HomePage() {
     {
       title: "أنواع التأمين",
       description: "تأمين شامل، تأمين ضد الغير، والمزيد من خيارات الحماية",
-      href: "app.ascze.com",
+      href: "https://app.ascze.com",
       icon: Car,
       image: "/images/types-bg.jpg",
     },
     {
       title: "تقديم مطالبة",
       description: "قدم مطالبتك بسهولة وتابع حالتها لحظة بلحظة",
-      href: "app.ascze.com",
+      href: "https://app.ascze.com",
       icon: FileCheck,
       image: "/images/claims-bg.jpg",
     },
     {
       title: "المساعدة على الطريق",
       description: "خدمة سحب وإنقاذ على مدار الساعة في جميع أنحاء المملكة",
-      href: "app.ascze.com",
+      href: "https://app.ascze.com",
       icon: Truck,
       image: "/images/roadside-bg.jpg",
     },
@@ -50,94 +53,96 @@ export default function HomePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt=""
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background" />
-        </div>
+    <div className="relative min-h-screen bg-background overflow-hidden" dir="rtl">
+      
+      {/* Glow background */}
+      <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/20 blur-[120px] rounded-full pointer-events-none" />
 
-        <div className="relative z-10 container max-w-xl mx-auto px-5 pt-14 pb-20">
-          <div className="text-center">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-white/15 backdrop-blur-md mb-5 ring-1 ring-white/20">
-              <Shield className="w-10 h-10 text-white" />
-            </div>
-            <h1 className="text-4xl font-bold text-white mb-3 text-balance leading-tight">
-              تأمين السيارات
-            </h1>
-            <p className="text-lg text-white/75 text-pretty leading-relaxed">
-              حماية شاملة لسيارتك بأفضل الأسعار والتغطيات
-            </p>
+      {/* Hero */}
+      <div className="relative overflow-hidden">
+        <Image
+          src="/images/hero-bg.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-background" />
+
+        <div className="relative z-10 container max-w-xl mx-auto px-5 pt-16 pb-24 text-center">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-white/10 backdrop-blur-xl mb-6 ring-1 ring-white/20 shadow-lg">
+            <Shield className="w-10 h-10 text-white" />
           </div>
+
+          <h1 className="text-4xl font-extrabold text-white mb-3">
+            تأمين السيارات
+          </h1>
+
+          <p className="text-lg text-white/80 mb-6">
+            حماية ذكية لسيارتك بأسعار تنافسية وخدمات فورية
+          </p>
+
+          <Link
+            href="https://app.ascze.com"
+            className="inline-block px-6 py-3 rounded-xl bg-primary text-white font-medium shadow-lg hover:shadow-xl hover:scale-[1.05] transition"
+          >
+            احصل على عرض سعر الآن
+          </Link>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="container max-w-xl mx-auto px-5 -mt-8 pb-12">
-        {/* Link Cards */}
+      {/* Content */}
+      <div className="container max-w-xl mx-auto px-5 -mt-10 pb-12">
+
+        {/* Cards */}
         <div className="flex flex-col gap-4">
-          {mainLinks.map((link) => (
-            <LinkCard
-              key={link.href}
-              title={link.title}
-              description={link.description}
-              href={link.href}
-              icon={link.icon}
-              image={link.image}
-              featured={link.featured}
-            />
+          {mainLinks.map((link, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <LinkCard {...link} />
+            </motion.div>
           ))}
         </div>
 
         {/* Divider */}
-        <div className="flex items-center gap-4 my-10">
-          <div className="flex-1 h-px bg-border" />
-          <span className="text-xs text-muted-foreground font-medium tracking-wide">المعلومات القانونية</span>
-          <div className="flex-1 h-px bg-border" />
+        <div className="flex items-center gap-3 my-10">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+          <span className="text-xs text-muted-foreground font-semibold">
+            المعلومات القانونية
+          </span>
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         </div>
 
-        {/* Legal Links */}
+        {/* Legal */}
         <div className="flex flex-col gap-3">
-          {legalLinks.map((link) => {
+          {legalLinks.map((link, i) => {
             const Icon = link.icon
             return (
               <Link
-                key={link.href}
+                key={i}
                 href={link.href}
-                className="group flex items-center gap-3 rounded-xl border border-border bg-card px-5 py-4 transition-all duration-200 hover:border-primary/30 hover:shadow-md active:scale-[0.98]"
+                className="group flex items-center gap-3 rounded-xl border border-border bg-card px-5 py-4 hover:shadow-md transition"
               >
-                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-muted group-hover:bg-primary/10 transition-colors">
-                  <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-muted group-hover:bg-primary/10">
+                  <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary" />
                 </div>
-                <span className="flex-1 text-base font-medium text-foreground">{link.title}</span>
-                <svg
-                  className="w-5 h-5 text-muted-foreground rotate-180 group-hover:text-primary group-hover:translate-x-[-4px] transition-all"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
+                <span className="flex-1">{link.title}</span>
               </Link>
             )
           })}
         </div>
 
         {/* Footer */}
-        <div className="mt-12 text-center space-y-2">
-          <p className="text-xs text-muted-foreground">
-            جميع خدماتنا وإعلاناتنا خاضعة لسياسات جوجل الإعلانية
+        <div className="mt-14 text-center space-y-2 opacity-80">
+          <p className="text-xs">
+            جميع خدماتنا خاضعة لسياسات Google الإعلانية
           </p>
-          <p className="text-xs text-muted-foreground">
-            {"© "}{new Date().getFullYear()}{" تأمين السيارات. جميع الحقوق محفوظة."}
+          <p className="text-xs font-medium">
+            © {new Date().getFullYear()} تأمين السيارات
           </p>
         </div>
       </div>
