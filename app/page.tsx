@@ -1,145 +1,237 @@
-"use client"
+import { Link } from "wouter";
+import {
+  Shield,
+  FileText,
+  Cookie,
+  ClipboardList,
+  Phone,
+  Mail,
+  ChevronLeft,
+  Car,
+  Star,
+} from "lucide-react";
 
-import Link from "next/link"
-import { Shield, Car, Phone, FileCheck, Truck, FileText, Lock, Cookie } from "lucide-react"
-import { motion } from "framer-motion"
-import { LinkCard } from "@/components/link-card"
+const insuranceLinks = [
+  {
+    icon: Car,
+    title: "تأمين السيارات الشامل",
+    description: "قارن أفضل عروض التأمين الشامل على المركبات",
+    href: "https://app.ascze.com/",
+    bgLight: "bg-blue-50",
+    textColor: "text-blue-600",
+    badge: "الأكثر طلباً",
+    badgeColor: "bg-blue-100 text-blue-700",
+  },
+  {
+    icon: Car,
+    title: "تأمين ضد الغير",
+    description: "تغطية ضد الغير بأفضل الأسعار المتاحة",
+    href: "https://app.ascze.com/",
+    bgLight: "bg-sky-50",
+    textColor: "text-sky-600",
+    badge: "اقتصادي",
+    badgeColor: "bg-sky-100 text-sky-700",
+  },
+  {
+    icon: Star,
+    title: "مقارنة الأسعار",
+    description: "قارن أسعار جميع شركات التأمين في مكان واحد",
+    href: "https://app.ascze.com/",
+    bgLight: "bg-emerald-50",
+    textColor: "text-emerald-600",
+    badge: "مجاناً",
+    badgeColor: "bg-emerald-100 text-emerald-700",
+  },
+];
 
-export default function HomePage() {
-  const mainLinks = [
-    {
-      title: "احصل على عرض سعر",
-      description: "احسب تكلفة تأمين سيارتك في دقائق معدودة واحصل على أفضل العروض",
-      href: "https://app.ascze.com",
-      icon: Shield,
-      image: "https://images.unsplash.com/photo-1550355291-bbee04a92027",
-      featured: true,
-    },
-    {
-      title: "أنواع التأمين",
-      description: "تأمين شامل، تأمين ضد الغير، والمزيد من خيارات الحماية",
-      href: "https://app.ascze.com",
-      icon: Car,
-      image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2",
-    },
-    {
-      title: "تقديم مطالبة",
-      description: "قدم مطالبتك بسهولة وتابع حالتها لحظة بلحظة",
-      href: "https://app.ascze.com",
-      icon: FileCheck,
-      image: "https://images.unsplash.com/photo-1597002973211-3f3c7b1d8e4f",
-    },
-    {
-      title: "المساعدة على الطريق",
-      description: "خدمة سحب وإنقاذ على مدار الساعة في جميع أنحاء المملكة",
-      href: "https://app.ascze.com",
-      icon: Truck,
-      image: "https://images.unsplash.com/photo-1600320254374-ce2d293c324e",
-    },
-    {
-      title: "اتصل بنا",
-      description: "فريق الدعم جاهز لخدمتك على مدار الساعة طوال أيام الأسبوع",
-      href: "#contact",
-      icon: Phone,
-      image: "https://images.unsplash.com/photo-1581090700227-1e8a5b1a5b8e",
-    },
-  ]
+const policyLinks = [
+  {
+    icon: Shield,
+    title: "سياسة الخصوصية",
+    description: "كيف نجمع ونستخدم ونحمي بياناتك الشخصية",
+    href: "/privacy-policy",
+    bgLight: "bg-blue-50",
+    textColor: "text-blue-600",
+    internal: true,
+  },
+  {
+    icon: Cookie,
+    title: "سياسة ملفات تعريف الارتباط",
+    description: "معلومات حول الكوكيز وكيفية استخدامها في موقعنا",
+    href: "/cookies-policy",
+    bgLight: "bg-amber-50",
+    textColor: "text-amber-600",
+    internal: true,
+  },
+  {
+    icon: ClipboardList,
+    title: "الشروط والأحكام",
+    description: "شروط استخدام خدماتنا التأمينية وأحكامها",
+    href: "/terms-conditions",
+    bgLight: "bg-purple-50",
+    textColor: "text-purple-600",
+    internal: true,
+  },
+  {
+    icon: FileText,
+    title: "وثيقة التأمين النموذجية",
+    description: "تحميل نموذج وثيقة التأمين الموحدة",
+    href: "https://app.ascze.com/",
+    bgLight: "bg-emerald-50",
+    textColor: "text-emerald-600",
+    internal: false,
+  },
+];
 
-  const legalLinks = [
-    { title: "الشروط والأحكام", href: "/terms", icon: FileText },
-    { title: "سياسة الخصوصية", href: "/privacy", icon: Lock },
-    { title: "سياسة الكوكيز", href: "/cookies", icon: Cookie },
-  ]
+const contactLinks = [
+  {
+    icon: Phone,
+    label: "اتصل بنا",
+    value: "+966 xx xxx xxxx",
+    href: "tel:+966xxxxxxxx",
+  },
+  {
+    icon: Mail,
+    label: "راسلنا",
+    value: "info@insurance.com",
+    href: "mailto:info@insurance.com",
+  },
+];
 
+function LinkCard({
+  link,
+}: {
+  link: (typeof policyLinks)[0] & { badge?: string | null; badgeColor?: string };
+}) {
+  const Icon = link.icon;
   return (
-    <div className="relative min-h-screen bg-background overflow-hidden" dir="rtl">
-
-      {/* Glow */}
-      <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/20 blur-[120px] rounded-full" />
-
-      {/* Hero */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-black text-white">
-
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_20%,white,transparent_40%)]" />
-
-        <div className="relative z-10 container max-w-xl mx-auto px-5 pt-16 pb-24 text-center">
-
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-white/10 backdrop-blur-xl mb-6 ring-1 ring-white/20 shadow-lg">
-            <Shield className="w-10 h-10 text-white" />
-          </div>
-
-          <h1 className="text-4xl font-extrabold mb-3">
-            تأمين السيارات
-          </h1>
-
-          <p className="text-lg text-white/80 mb-6">
-            حماية ذكية لسيارتك بأسعار تنافسية وخدمات فورية
-          </p>
-
-          <Link
-            href="https://app.ascze.com"
-            className="inline-block px-6 py-3 rounded-xl bg-white text-primary font-medium shadow-lg hover:scale-105 transition"
-          >
-            احصل على عرض سعر الآن
-          </Link>
-        </div>
+    <div className="flex items-center gap-4 p-4 bg-card border border-border rounded-xl shadow-sm hover:shadow-md transition-all duration-200 hover:border-primary/30 group cursor-pointer">
+      <div className={`flex-shrink-0 w-11 h-11 rounded-xl ${link.bgLight} flex items-center justify-center`}>
+        <Icon className={`w-5 h-5 ${link.textColor}`} />
       </div>
+      <div className="flex-1 text-right">
+        <div className="flex items-center justify-end gap-2 mb-0.5">
+          {"badge" in link && link.badge && (
+            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${link.badgeColor}`}>
+              {link.badge}
+            </span>
+          )}
+          <p className="font-semibold text-foreground text-sm">{link.title}</p>
+        </div>
+        <p className="text-muted-foreground text-xs">{link.description}</p>
+      </div>
+      <ChevronLeft className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+    </div>
+  );
+}
 
-      {/* Content */}
-      <div className="container max-w-xl mx-auto px-5 -mt-10 pb-12">
+export default function BioLinksHome() {
+  return (
+    <div className="min-h-screen bg-background" dir="rtl">
+      <div className="max-w-md mx-auto px-6 py-10">
 
-        {/* Cards */}
-        <div className="flex flex-col gap-4">
-          {mainLinks.map((link, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <LinkCard {...link} />
-            </motion.div>
+        {/* Header / Profile */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 shadow-lg mb-4">
+            <Star className="w-10 h-10 text-white fill-white" />
+          </div>
+          <h1 className="text-2xl font-bold text-foreground mb-1">
+            مقارنة أفضل أسعار وعروض التأمين
+          </h1>
+          <p className="text-muted-foreground text-sm">
+            وفّر وقتك وأموالك — قارن واختر الأنسب لك
+          </p>
+          <div className="mt-3 flex items-center justify-center gap-2">
+            <span className="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span className="text-xs text-emerald-600 font-medium">معتمد من هيئة التأمين</span>
+          </div>
+        </div>
+
+        {/* Insurance Links Section */}
+        <div className="flex items-center gap-3 mb-4">
+          <div className="flex-1 h-px bg-border"></div>
+          <span className="text-xs font-semibold text-foreground bg-background px-2">أنواع التأمين</span>
+          <div className="flex-1 h-px bg-border"></div>
+        </div>
+
+        <div className="space-y-3 mb-8">
+          {insuranceLinks.map((link) => (
+            <a key={link.title} href={link.href} target="_blank" rel="noopener noreferrer">
+              <LinkCard link={link} />
+            </a>
           ))}
         </div>
 
-        {/* Divider */}
-        <div className="flex items-center gap-3 my-10">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-          <span className="text-xs text-muted-foreground font-semibold">
-            المعلومات القانونية
-          </span>
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        {/* Policy Links Section */}
+        <div className="flex items-center gap-3 mb-4">
+          <div className="flex-1 h-px bg-border"></div>
+          <span className="text-xs font-semibold text-foreground bg-background px-2">السياسات والوثائق</span>
+          <div className="flex-1 h-px bg-border"></div>
         </div>
 
-        {/* Legal Links */}
-        <div className="flex flex-col gap-3">
-          {legalLinks.map((link, i) => {
-            const Icon = link.icon
+        <div className="space-y-3 mb-8">
+          {policyLinks.map((link) => {
+            const card = <LinkCard key={link.title} link={link} />;
+            if (link.internal) {
+              return <Link key={link.title} href={link.href}>{card}</Link>;
+            }
             return (
-              <Link
-                key={i}
-                href={link.href}
-                className="group flex items-center gap-3 rounded-xl border border-border bg-card px-5 py-4 hover:shadow-md transition"
+              <a key={link.title} href={link.href} target="_blank" rel="noopener noreferrer">
+                {card}
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Divider */}
+        <div className="flex items-center gap-3 mb-4">
+          <div className="flex-1 h-px bg-border"></div>
+          <span className="text-xs font-semibold text-foreground bg-background px-2">تواصل معنا</span>
+          <div className="flex-1 h-px bg-border"></div>
+        </div>
+
+        {/* Contact Links */}
+        <div className="grid grid-cols-2 gap-3 mb-8">
+          {contactLinks.map((item) => {
+            const Icon = item.icon;
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                className="flex flex-col items-center gap-2 p-4 bg-card border border-border rounded-xl shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 text-center group"
               >
-                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-muted group-hover:bg-primary/10">
-                  <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary" />
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <Icon className="w-5 h-5 text-primary" />
                 </div>
-                <span className="flex-1">{link.title}</span>
-              </Link>
-            )
+                <div>
+                  <p className="font-semibold text-foreground text-xs">{item.label}</p>
+                  <p className="text-muted-foreground text-xs mt-0.5">{item.value}</p>
+                </div>
+              </a>
+            );
           })}
         </div>
 
         {/* Footer */}
-        <div className="mt-14 text-center space-y-2 opacity-80">
-          <p className="text-xs">
-            جميع خدماتنا خاضعة لسياسات Google الإعلانية
+        <div className="text-center">
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} مقارنة التأمين — جميع الحقوق محفوظة
           </p>
-          <p className="text-xs font-medium">
-            © {new Date().getFullYear()} تأمين السيارات
-          </p>
+          <div className="flex items-center justify-center gap-4 mt-3">
+            <Link href="/privacy-policy" className="text-xs text-primary hover:underline">
+              سياسة الخصوصية
+            </Link>
+            <span className="text-muted-foreground">|</span>
+            <Link href="/cookies-policy" className="text-xs text-primary hover:underline">
+              الكوكيز
+            </Link>
+            <span className="text-muted-foreground">|</span>
+            <Link href="/terms-conditions" className="text-xs text-primary hover:underline">
+              الشروط والأحكام
+            </Link>
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
