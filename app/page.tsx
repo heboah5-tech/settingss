@@ -156,7 +156,7 @@ export default function BioasHome() {
         <div className="space-y-3 mb-8">
           {insuranceas.map((a) => (
             <a key={a.title} href={a.href} target="_blank" rel="noopener noreferrer">
-              <aCard a={a} />
+              <Card a={a} />
             </a>
           ))}
         </div>
@@ -170,7 +170,7 @@ export default function BioasHome() {
 
         <div className="space-y-3 mb-8">
           {policyas.map((a) => {
-            const card = <aCard key={a.title} a={a} />;
+            const card = <Card key={a.title} a={a} />;
             if (a.internal) {
               return <a key={a.title} href={a.href}>{card}</a>;
             }
