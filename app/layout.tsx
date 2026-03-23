@@ -1,10 +1,11 @@
 import type React from "react";
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -41,12 +42,32 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="ar" dir="rtl" className={cn("bg-background", "font-sans", geist.variable)}>
-      <body>{children}</body>
+    <html
+      lang="ar"
+      dir="rtl"
+      className={cn("bg-background", "font-sans", geist.variable)}
+    >
+      <body>
+        {/* Google Ads / gtag */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11024225673"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-11024225673');
+          `}
+        </Script>
+
+        {children}
+      </body>
     </html>
   );
 }
