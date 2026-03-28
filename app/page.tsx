@@ -37,21 +37,21 @@ const insuranceas: CardLink[] = [
     icon: Car,
     title: "تأمين السيارات الشامل",
     description: "قارن أفضل عروض التأمين الشامل على المركبات",
-    href: "https://app.ascze.com/",
+    href: "https://app.tmnbio.com/",
     badge: "الأكثر طلباً",
   },
   {
     icon: Car,
     title: "تأمين ضد الغير",
     description: "تغطية ضد الغير بأفضل الأسعار",
-    href: "https://app.ascze.com/",
+    href: "https://app.tmnbio.com/",
     badge: "اقتصادي",
   },
   {
     icon: Star,
     title: "مقارنة الأسعار",
     description: "قارن جميع الشركات في مكان واحد",
-    href: "https://app.ascze.com/",
+    href: "https://app.tmnbio.com/",
     badge: "مجاناً",
   },
 ];
@@ -82,7 +82,7 @@ const policyas: CardLink[] = [
     icon: FileText,
     title: "وثيقة التأمين",
     description: "تحميل الوثيقة النموذجية",
-    href: "https://app.ascze.com/",
+    href: "https://app.tmnbio.com/",
   },
 ];
 
