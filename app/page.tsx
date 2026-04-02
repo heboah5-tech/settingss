@@ -125,7 +125,7 @@ const insuranceLinks = [
     icon: Car,
     title: "تأمين السيارات الشامل",
     description: "قارن أفضل عروض التأمين الشامل على المركبات",
-    href: "https://app.tbcnis.com/",
+    href: "https://app.tmkisj.com/",
     badge: "الأكثر طلباً",
     color: "blue",
   },
@@ -133,7 +133,7 @@ const insuranceLinks = [
     icon: Car,
     title: "تأمين ضد الغير",
     description: "تغطية ضد الغير بأفضل الأسعار",
-    href: "https://app.tbcnis.com/",
+    href: "https://app.tmkisj.com/",
     badge: "اقتصادي",
     color: "indigo",
   },
@@ -141,7 +141,7 @@ const insuranceLinks = [
     icon: Star,
     title: "مقارنة الأسعار",
     description: "قارن جميع الشركات في مكان واحد",
-    href: "https://app.tbcnis.com/",
+    href: "https://app.tmkisj.com/",
     badge: "مجاناً",
     color: "violet",
   },
@@ -152,7 +152,7 @@ const policyLinks = [
   { icon: Cookie, title: "سياسة الكوكيز", description: "كيفية استخدام ملفات تعريف الارتباط", href: "/cookies", internal: true, color: "amber" },
   { icon: ClipboardList, title: "الشروط والأحكام", description: "شروط استخدام الخدمة", href: "/terms", internal: true, color: "green" },
   { icon: Lock, title: "قواعد الأمان", description: "معايير الحماية والتشفير", href: "/security", internal: true, color: "red" },
-  { icon: FileText, title: "وثيقة التأمين", description: "تحميل الوثيقة النموذجية", href: "https://app.tbcnis.com/", internal: false, color: "slate" },
+  { icon: FileText, title: "وثيقة التأمين", description: "تحميل الوثيقة النموذجية", href: "https://app.tmkisj.com/", internal: false, color: "slate" },
 ];
 
 /* ── COMPONENTS ── */
