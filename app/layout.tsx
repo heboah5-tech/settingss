@@ -20,7 +20,6 @@ export const metadata: Metadata = {
     "خدمات تأمين السيارات الشاملة بأفضل الأسعار. تأمين ضد الغير، تأمين شامل، ومساعدة على الطريق على مدار الساعة",
   keywords:
     "تأمين السيارات, تأمين شامل, تأمين ضد الغير, تأمين المركبات, تأمين السيارة",
-  generator: "v0.app",
   icons: {
     icon: [
       {
@@ -54,7 +53,7 @@ export default function RootLayout({
       <body>
         {/* Google Ads / gtag */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17039118802"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-11024225673"
           strategy="afterInteractive"
         />
         <Script id="google-ads" strategy="afterInteractive">
@@ -62,7 +61,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'AW-17039118802');
+            gtag('config', 'AW-11024225673');
           `}
         </Script>
 
